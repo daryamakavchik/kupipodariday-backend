@@ -13,7 +13,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
   ) {
     super({
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-      secretOrKey: jwtConstant.secret
+      secretOrKey: jwtConstant.secret,
     });
   }
 
@@ -21,7 +21,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     const user = await this.userService.findById(jwtPayload.sub);
 
     if (!user) {
-      throw new Error()
+      throw new Error('Такой пользователь не найден');
     }
 
     return user;

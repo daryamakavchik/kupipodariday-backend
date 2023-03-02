@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { Injectable } from "@nestjs/common";
-import { InjectRepository } from "@nestjs/typeorm";
-import { Wish } from "./entities/wish.entity";
-import { DataSource, Repository } from "typeorm";
-import { CreateWishDto } from "./dto/create-wish.dto";
-import { User } from "../users/entities/user.entity";
-import { UpdateWishDto } from "./dto/update-wish.dto";
+import { BadRequestException, Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Wish } from './entities/wish.entity';
+import { DataSource, Repository } from 'typeorm';
+import { CreateWishDto } from './dto/create-wish.dto';
+import { User } from '../users/entities/user.entity';
+import { UpdateWishDto } from './dto/update-wish.dto';
 
 @Injectable()
 export class WishesService {
@@ -22,6 +22,7 @@ export class WishesService {
       ...createWishDto,
       owner: user,
     });
+    delete user.password;
     return wish;
   }
 
@@ -75,15 +76,15 @@ export class WishesService {
     const candidate = await this.findOne(id);
 
     if (!candidate) {
-      throw new Error();
+      throw new Error('Такой пользователь не найден');
     }
 
     if (candidate.offers.length > 0) {
-      throw new Error();
+      throw new BadRequestException('Подарок уже был предложен');
     }
 
     if (candidate.owner.id !== userId) {
-      throw new Error();
+      throw new Error('Пользователь не предлагал данный подарок');
     }
 
     return this.wishRepository.save({
@@ -96,11 +97,11 @@ export class WishesService {
     const candidate = await this.findOne(id);
 
     if (!candidate) {
-      throw new Error();
+      throw new Error('Такой пользователь не найден');
     }
 
     if (candidate.owner.id !== userId) {
-      throw new Error();
+      throw new Error('Пользователь не предлагал данный подарок');
     }
 
     await this.wishRepository.delete({ id });
@@ -112,12 +113,12 @@ export class WishesService {
     const originalWish = await this.wishRepository.findOneBy({ id: wishId });
 
     if (!originalWish) {
-      throw new Error();
+      throw new Error('Данный подарок уже существует');
     }
     const user = await this.userRepository.findOneBy({ id: userId });
 
     if (!user) {
-      throw new Error();
+      throw new Error('Такой пользователь не найден');
     }
 
     const wishData: CreateWishDto = {
@@ -139,6 +140,7 @@ export class WishesService {
         ...wishData,
         owner: user,
       });
+      delete user.password;
       await queryRunner.manager.save(originalWish);
       await queryRunner.commitTransaction();
       return {};

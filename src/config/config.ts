@@ -14,7 +14,7 @@ export default () => ({
     password: process.env.DATABASE_PASSWORD || 'student',
     database: process.env.DATABASE_NAME || 'kupipodariday',
     entities: [User, Wish, Wishlist, Offer],
-    synchronize: false,
+    synchronize: true,
   },
   jwtSecret: jwtConstant.secret,
 });

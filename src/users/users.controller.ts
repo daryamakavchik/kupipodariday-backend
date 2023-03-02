@@ -6,7 +6,7 @@ import {
   UseGuards,
   Body,
   Patch,
-  Param
+  Param,
 } from '@nestjs/common';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 import { UsersService } from './users.service';
@@ -46,7 +46,7 @@ export class UsersController {
     const user = await this.usersService.findByUsername(username);
 
     if (!user) {
-      throw new Error();
+      throw new Error('Такой пользователь не найден');
     }
 
     return user;
@@ -57,7 +57,7 @@ export class UsersController {
     const user = await this.usersService.findByUsername(username);
 
     if (!user) {
-      throw new Error();
+      throw new Error('Такой пользователь не найден');
     }
 
     return this.wishesService.findUsersWishes(user.id);

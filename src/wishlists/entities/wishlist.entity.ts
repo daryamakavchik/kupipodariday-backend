@@ -7,10 +7,10 @@ import {
   JoinTable,
   UpdateDateColumn,
   CreateDateColumn,
-} from "typeorm";
-import { Min, Max, IsUrl, IsString } from "class-validator";
-import { User } from "src/users/entities/user.entity";
-import { Wish } from "../../wishes/entities/wish.entity";
+} from 'typeorm';
+import { Min, Max, IsUrl, IsString } from 'class-validator';
+import { User } from 'src/users/entities/user.entity';
+import { Wish } from '../../wishes/entities/wish.entity';
 
 @Entity()
 export class Wishlist {
