@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { Injectable } from "@nestjs/common";
-import { InjectRepository } from "@nestjs/typeorm";
-import { Wish } from "./entities/wish.entity";
-import { DataSource, Repository } from "typeorm";
-import { CreateWishDto } from "./dto/create-wish.dto";
-import { User } from "../users/entities/user.entity";
-import { UpdateWishDto } from "./dto/update-wish.dto";
+import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Wish } from './entities/wish.entity';
+import { DataSource, Repository } from 'typeorm';
+import { CreateWishDto } from './dto/create-wish.dto';
+import { User } from '../users/entities/user.entity';
+import { UpdateWishDto } from './dto/update-wish.dto';
 
 @Injectable()
 export class WishesService {
