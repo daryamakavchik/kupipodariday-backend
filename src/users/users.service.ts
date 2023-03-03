@@ -7,7 +7,6 @@ import { UpdateUserDto } from './dto/update-user.dto';
 import * as bcrypt from 'bcrypt';
 import { Like } from 'typeorm';
 
-
 @Injectable()
 export class UsersService {
   constructor(

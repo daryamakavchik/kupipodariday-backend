@@ -1,7 +1,6 @@
 import { ExtractJwt, Strategy } from 'passport-jwt';
 import { PassportStrategy } from '@nestjs/passport';
 import { Injectable } from '@nestjs/common';
-import { jwtConstant } from '../constants/constants';
 import { UsersService } from 'src/users/users.service';
 import { ConfigService } from '@nestjs/config';
 
@@ -13,7 +12,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
   ) {
     super({
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-      secretOrKey: jwtConstant.secret
+      secretOrKey: configService.get<string>('jwtSecret'),
     });
   }
 
@@ -21,7 +20,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     const user = await this.userService.findById(jwtPayload.sub);
 
     if (!user) {
-      throw new Error()
+      throw new Error('Такой пользователь не найден');
     }
 
     return user;

@@ -1,10 +1,11 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Offer }  from '../offers/entities/offer.entity';
+import { Offer } from '../offers/entities/offer.entity';
 import { Repository, DataSource } from 'typeorm';
 import { CreateOfferDto } from './dto/create-offer.dto';
 import { User } from 'src/users/entities/user.entity';
 import { Wish } from 'src/wishes/entities/wish.entity';
+import { NotFoundException, BadRequestException } from '@nestjs/common';
 
 @Injectable()
 export class OffersService {
@@ -27,17 +28,19 @@ export class OffersService {
     });
 
     if (!wish) {
-          throw new Error()
+      throw new NotFoundException('Такого подарка не найдено');
     }
 
     if (wish.owner.id === user.id) {
-      throw new Error()
+      throw new BadRequestException(
+        'Только владелец подарка может его удалять',
+      );
     }
 
     const raised = wish.raised + amount;
 
     if (raised > wish.price) {
-      throw new Error()
+      throw new BadRequestException('Размер вклада слишком большой');
     } else {
       wish.raised = wish.raised + amount;
     }
@@ -53,6 +56,7 @@ export class OffersService {
         user,
         //item: wish,
       });
+      delete user.password;
       await queryRunner.manager.save(wish);
       await queryRunner.commitTransaction();
       return {};

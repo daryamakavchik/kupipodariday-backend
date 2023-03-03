@@ -1,4 +1,3 @@
-import { jwtConstant } from 'src/auth/constants/constants';
 import { Offer } from 'src/offers/entities/offer.entity';
 import { User } from 'src/users/entities/user.entity';
 import { Wish } from 'src/wishes/entities/wish.entity';
@@ -14,7 +13,7 @@ export default () => ({
     password: process.env.DATABASE_PASSWORD || 'student',
     database: process.env.DATABASE_NAME || 'kupipodariday',
     entities: [User, Wish, Wishlist, Offer],
-    synchronize: false,
+    synchronize: true,
   },
-  jwtSecret: jwtConstant.secret,
+  jwtSecret: process.env.JWT_SECRET || 'some-super-secret-key',
 });
