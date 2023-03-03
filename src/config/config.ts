@@ -1,4 +1,3 @@
-import { jwtConstant } from 'src/auth/constants/constants';
 import { Offer } from 'src/offers/entities/offer.entity';
 import { User } from 'src/users/entities/user.entity';
 import { Wish } from 'src/wishes/entities/wish.entity';
@@ -16,5 +15,5 @@ export default () => ({
     entities: [User, Wish, Wishlist, Offer],
     synchronize: true,
   },
-  jwtSecret: jwtConstant.secret,
+  jwtSecret: process.env.JWT_SECRET || 'some-super-secret-key',
 });

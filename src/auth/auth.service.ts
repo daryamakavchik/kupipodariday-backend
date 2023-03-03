@@ -18,8 +18,8 @@ export class AuthService {
     return { access_token: this.jwtService.sign(payload) };
   }
 
-  async validatePassword(username: string, password: string) {
-    const user = await this.userService.findByUsername(username);
+  async validatePassword(email: string, password: string) {
+    const user = await this.userService.findByEmail(email);
 
     if (!user) {
       throw new ServerException(ErrorCode.LoginOrPasswordIncorrect);

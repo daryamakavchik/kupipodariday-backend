@@ -44,5 +44,4 @@ import { DatabaseService } from './database/dbservice';
   controllers: [AppController],
   providers: [DatabaseService],
 })
-
-export class AppModule {} 
+export class AppModule {}
