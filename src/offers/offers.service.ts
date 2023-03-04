@@ -54,7 +54,6 @@ export class OffersService {
         amount,
         hidden,
         user,
-        //item: wish,
       });
       delete user.password;
       await queryRunner.manager.save(wish);
