@@ -1,5 +1,12 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, OneToMany } from 'typeorm';
-import { Length, IsUrl, IsEmail, IsString  } from 'class-validator';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  CreateDateColumn,
+  UpdateDateColumn,
+  OneToMany,
+} from 'typeorm';
+import { Length, IsUrl, IsEmail, IsString } from 'class-validator';
 import { Wish } from '../../wishes/entities/wish.entity';
 import { Wishlist } from '../../wishlists/entities/wishlist.entity';
 import { Offer } from '../../offers/entities/offer.entity';
@@ -12,8 +19,7 @@ export class User {
   @Column({
     type: 'varchar',
     length: 30,
-    default: 'user',
-    nullable: true
+    nullable: false,
   })
   @IsString()
   @Length(2, 30)
