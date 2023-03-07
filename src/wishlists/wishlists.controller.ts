@@ -14,7 +14,7 @@ import { CreateWishlistDto } from './dto/create-wishlist.dto';
 import { UpdateWishlistDto } from './dto/update-wishlist.dto';
 import { WishlistsService } from './wishlists.service';
 import { UseInterceptors } from '@nestjs/common';
-import { WishInterceptor } from "src/interceptors/wish-intercept";
+import { WishInterceptor } from 'src/interceptors/wish-intercept';
 
 @UseGuards(JwtAuthGuard)
 @UseInterceptors(WishInterceptor)
