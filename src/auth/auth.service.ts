@@ -13,13 +13,13 @@ export class AuthService {
     private userService: UsersService,
   ) {}
 
-  auth(user: User) {
-    const payload = { sub: user.id };
+  async auth(user: User) {
+    const payload = { usernane: user.username, sub: user.id };
     return { access_token: this.jwtService.sign(payload) };
   }
 
-  async validatePassword(email: string, password: string) {
-    const user = await this.userService.findByEmail(email);
+  async validatePassword(username: string, password: string) {
+    const user = await this.userService.findByUsername(username);
 
     if (!user) {
       throw new ServerException(ErrorCode.LoginOrPasswordIncorrect);

@@ -24,17 +24,17 @@ export class UsersController {
     private readonly wishesService: WishesService,
   ) {}
 
-  @Get('/me')
+  @Get('me')
   findMe(@Req() req) {
     return req.user;
   }
 
-  @Patch('/me')
+  @Patch('me')
   update(@Req() req, @Body() updateUserDto: UpdateUserDto) {
     return this.usersService.updateOne(req.user, updateUserDto);
   }
 
-  @Get('/me/wishes')
+  @Get('me/wishes')
   async findMeWishes(@Req() req) {
     const { id } = req.user;
 

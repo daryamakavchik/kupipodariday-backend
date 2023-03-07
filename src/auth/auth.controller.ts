@@ -13,7 +13,7 @@ export class AuthController {
 
   @UseGuards(LocalGuard)
   @Post('signin')
-  signin(@Request() req) {
+  async signin(@Request() req) {
     return this.authService.auth(req.user);
   }
 
