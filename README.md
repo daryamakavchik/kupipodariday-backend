@@ -15,8 +15,8 @@
 - Profile editing;
 - Others' profiles and wishlists;
 - Searching for a profile by name/mail;
-- Request for those who wish to chip in;
-- Copying a present to won profile.
+- Request form for users who wish to chip in;
+- Copying a present to own profile.
 
 ## Tech stack:
 
