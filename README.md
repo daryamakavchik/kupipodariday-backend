@@ -16,7 +16,7 @@
 - Others' profiles and wishlists;
 - Searching for a profile by name/mail;
 - Request form for users who wish to chip in;
-- Copying a present to own profile.
+- Copying a present to user's own profile.
 
 ## Tech stack:
 
