@@ -7,16 +7,16 @@
 
 ## Functionality:
 
-- Registration;
-- Authorization;
-- Presents feed;
-- Adding/editing presents;
-- Thematic selections;
-- Profile editing;
-- Others' profiles and wishlists;
-- Searching for a profile by name/mail;
-- Request form for users who wish to chip in;
-- Copying a present to user's own profile.
+- registration
+- authorization
+- presents feed
+- adding/editing presents
+- thematic selections
+- profile editing
+- others' profiles and wishlists
+- searching for a profile by name/mail
+- request form for users who wish to chip in
+- copying a present to user's own profile
 
 ## Tech stack:
 
